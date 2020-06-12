@@ -1,0 +1,24 @@
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: $font-family;
+    color: $primary;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+a{
+    font-size: 1.2rem;
+    color: whitesmoke;
+}
+
+.flex{
+    display: flex;
+}
+
+.container{
+    max-width: 1266px;
+    margin: 0 auto;
+}

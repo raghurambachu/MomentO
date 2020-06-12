@@ -1,0 +1,316 @@
+@import "reset";
+@import "variables";
+@import "general";
+
+
+.todo-toggler{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    &:hover{
+        color: rgba($color: $primary, $alpha: 0.5);
+    }
+}
+
+
+.todo-section{
+    background: $primary;
+    position: absolute;
+    top:15%;
+    left: 5%;
+    color: rgba($color: $black, $alpha: 0.7);
+    .todo-container{
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    }
+    .todo-toggle-checkbox{
+        width: 15%;
+        display: none;
+
+    }
+    .todo-primary-input{
+        width: 300px;
+        font-size: 1.2rem;
+        padding:0.8rem 1rem ;
+        outline: 0;
+        border: 0;
+        font-family: $font-family;
+    }
+    .todo-item{
+        border: 1px solid rgba($color: $black, $alpha: 0.7);
+        width: 100%;
+        position: relative;
+    }
+    .todo-item:nth-child(n){
+        border-bottom: 0;
+    }
+    .todo-item:last-child{
+        border-bottom: 1px solid rgba($color: $black, $alpha: 0.7);
+    }
+    .todo-checkbox-span{
+        display: inline-block;
+        width: 20%;
+        padding: 0.65rem 1rem;
+    }
+    .todo-description{
+        display: inline-block;
+        padding: 0.65rem 0rem;
+        width: 80%;
+        &:hover + .todo-close{
+            display: block;
+        }
+    }
+    .todo-close{
+        right: 5%;
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
+        display: none;
+        &:hover{
+            display: block;
+        }
+    }
+}
+
+.hide-todo-section{
+    display: none;
+}
+
+// Todo Checkbox Styles
+/*Checkboxes styles*/
+input[type="checkbox"] { display: none; }
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  color: #ddd;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #6cc0e5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+.search-bar{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    .search-input{
+        display: block;
+        width: 400px;
+        border-radius: 2rem;
+        padding: 0.75rem 1.5rem;
+        font-family: $font-family;
+        font-size: 1.1rem;
+        border: 0;
+        outline: 0;
+    }
+    .search-button{
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        top: 0;
+        padding: 0.75rem 1.5rem;
+        color: blue;
+        font-size: 1.1rem;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        &:hover{
+            color: cornflowerblue;
+        }
+    }
+}
+
+.time-name-container{
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translateX(-50%);
+    .container{
+        width: 500px;
+        margin: 0 auto;
+       
+    }
+    .time{
+        font-size: 4.5rem;
+        font-weight: 600;
+    }
+    .greeting-wrapper{
+        font-weight: 400;
+        font-size: 2.5rem;
+    }
+    .username-input{
+        background: transparent;
+        font-size: 2.5rem;
+        font-family: $font-family;
+        border: 0;
+        outline: 0;
+        color: $primary;
+        width: 200px;
+    }
+}
+
+
+.most-frequently-visited{
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    a,.add-link{
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        border: 1px solid grey;
+        text-decoration: none;
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+        cursor: pointer;
+    }
+    .add-link{
+        position: relative;
+        z-index: 1;
+    }
+    .mfv-links{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+            background: rgba($color: $primary, $alpha: 0.5);
+        }
+    }
+    .add-link-container{
+        position: relative;
+        .add-link-form{
+            height: 50px;
+            position: absolute;
+            top: 1.5%;
+            right: 120%;
+            padding: 0.5em;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .add-link-form::after{
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            z-index: 5;
+            background: $blue;
+            left: 96%;
+            top: 30%;
+            clip-path: polygon(100% 50%, 0 0, 0 100%);
+        }
+        .add-link-input{
+            font-family: $font-family;
+            outline: 0;
+            border: 0;
+            display: block;
+            padding: 0.3em 0.5em;
+         
+        }
+        .add-link-button{
+           
+            outline: 0;
+            padding: 0.3em 0.8em;
+            border: 0;
+            background: $blue;
+            cursor: pointer;
+            font-size: 1rem;
+            
+        }
+        .display-add-link-form{
+            opacity: 1;
+        }
+
+    }
+    .most-frequently-list{
+        .li-link-item{
+            position: relative;
+            &:hover > .icon-delete{
+                display: block;
+            }
+            &:hover > .icon-delete::after{
+                display: block;
+            }
+        }
+        .icon-delete{
+            color: black;
+            position: absolute;
+            padding: 0.15em 0.25em;
+            border-radius: 0.15rem;
+            top: 20%;
+            right: 120%;
+            background: rgba($color: $primary, $alpha: 0.7);
+            cursor: pointer;
+            z-index: 1;
+            display: none;
+        }
+        .icon-delete::after{
+            content: "";
+            position: absolute;
+            right:-42%;
+            height: 15px;
+            width: 10px;
+            clip-path: polygon(100% 50%, 0 0, 0 100%);
+            background: rgba($color: $primary, $alpha: 0.7);
+            top: 22%;
+            z-index: 0;
+        }
+    }
+    
+}
+
+
+.quotes-section{
+    position: absolute;
+    max-width: 100%;
+    bottom: 0;
+    font-size: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    .quotes-container{
+        width: 1200px;
+        justify-content: center;
+        text-align: center;
+
+    }
+}
