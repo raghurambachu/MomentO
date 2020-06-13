@@ -7,17 +7,22 @@ const addLinkForm_DOM = document.querySelector(".add-link-form");
 const addLinkInput_DOM = document.querySelector(".add-link-input");
 const mostFrequentlyList_DOM = document.querySelector(".most-frequently-list");
 
+// Background Image Changer
+const backgroundForm_DOM = document.querySelector(".bg-img-form");
+const backgroundInput_DOM =  document.querySelector(".bg-img-input");
+
+let backUrl = localStorage.getItem("backUrl") || "../img/6.jpg"
 let iconsToDisplay = JSON.parse(localStorage.getItem("iconsToDisplay")) || [];
 
 function randomIndexGenerator(def = 10){
     return Math.floor(Math.random() * def)
 }
 
-function setBackground(event){
-    // document.body.style.background = `url("../img/${randomIndexGenerator() + 1}.jpg") no-repeat`;
-    document.body.style.background = `linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url("../img/2.jpg") no-repeat center top`;
-    document.body.style.backgroundSize = "auto"
-}
+// function setBackground(event){
+//     // document.body.style.background = `url("../img/${randomIndexGenerator() + 1}.jpg") no-repeat`;
+//     document.body.style.background = `linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url("../img/2.jpg") no-repeat center top`;
+//     document.body.style.backgroundSize = "cover"
+// }
 
 function setTime(){
     const date = new Date();
@@ -65,8 +70,8 @@ function handleBlurForUsernameInput(e){
         const userInputElement = e.target.closest(".username-input");
         const spanUsername = document.createElement("span");
         spanUsername.className = "username";
-        spanUsername.textContent = userInputElement.value === "" ? user : userInputElement.value ;
-        localStorage.setItem("user",userInputElement.value === "" ? user : userInputElement.value)
+        spanUsername.textContent = userInputElement.value.trim() === "" ? user : userInputElement.value ;
+        localStorage.setItem("user",userInputElement.value.trim() === "" ? user : userInputElement.value)
         const greetingWrapper = userInputElement.parentElement;
         greetingWrapper.replaceChild(spanUsername,userInputElement);
     }
@@ -96,9 +101,9 @@ function setQuote(){
         <q class="quote">
             ${quoteObj.text} 
         </q>
-        <p>
-        - By <span class="author">${quoteObj.author}</span>
-        </p>
+ 
+       
+        
     </div>
     `
 }
@@ -182,8 +187,9 @@ addLinkForm_DOM.addEventListener("submit",function(e){
     } else {
 
     }
-
 })
+
+
 
 function handleClickOnDeleteLinkButton(e){
     let element = e.target.closest(".icon-delete");
@@ -194,16 +200,46 @@ function handleClickOnDeleteLinkButton(e){
     createIcons();
 }
 
+function handleClickOnImageChangerIcon(e){
+    let element = e.target.closest(".image-changer-icon");
+    if(!element) return;
+    backgroundForm_DOM.classList.toggle("bg-img-form-display");
+   
+}
+
 
 
 document.body.addEventListener("click",function(e){
     handleClickOnAddLinkButton(e);
     handleClickOnDeleteLinkButton(e);
+    handleClickOnImageChangerIcon(e)
 })
+
+// backgroundImage changer;
+backgroundForm_DOM.addEventListener("submit",function(e){
+    e.preventDefault();
+    const linkVal = backgroundInput_DOM.value;
+    const regexImgChecker = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
+    console.log(regexImgChecker.test(linkVal))
+    if(regexImgChecker.test(linkVal)){
+        document.body.style.background = `url("${linkVal}")`;
+        localStorage.setItem("backUrl",linkVal);
+        backgroundInput_DOM.value = "";
+        backgroundForm_DOM.classList.remove("bg-img-form-display");
+    } else {
+        backgroundInput_DOM.value = "";
+        backgroundForm_DOM.classList.remove("bg-img-form-display");
+    }
+})
+
+function setBackground(){
+    document.body.style.background = `url("${backUrl}")`
+}
 
 
 window.addEventListener("load",(event) => {
-    setBackground(event);
+    // setBackground(event);
+    setBackground();
     setTime();
     setGreeting();
     setQuote();
