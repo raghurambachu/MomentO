@@ -152,6 +152,9 @@ a {
 .todo-section .todo-close:hover {
   display: block;
 }
+.todo-section .todo-strikethrough {
+  text-decoration: line-through;
+}
 .todo-section .todo-info {
   font-size: 0.8rem;
   justify-content: space-between;
@@ -270,6 +273,7 @@ input[type=checkbox]:checked + label:before {
 .background-image-changer .bg-img-container .bg-img-input {
   outline: 0;
   padding: 0.2rem 0.4rem;
+  width: 350px;
 }
 .background-image-changer .bg-img-form::after {
   content: "";
@@ -453,10 +457,10 @@ input[type=checkbox]:checked + label:before {
 .pending-task-container {
   position: absolute;
   text-align: center;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0.2rem;
   top: 65%;
   font-size: 1.2rem;
-  width: 360px;
+  width: 450px;
   left: 50%;
   transform: translateX(-50%);
   height: 20vh;
@@ -471,7 +475,15 @@ input[type=checkbox]:checked + label:before {
 .pending-task-container .pending-item {
   width: 280px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0.2rem;
+}
+
+.default-theme {
+  font-size: 1.5rem;
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  display: none;
 }
 
 .quotes-section {

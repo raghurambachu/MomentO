@@ -11,7 +11,11 @@ const mostFrequentlyList_DOM = document.querySelector(".most-frequently-list");
 const backgroundForm_DOM = document.querySelector(".bg-img-form");
 const backgroundInput_DOM =  document.querySelector(".bg-img-input");
 
-let backUrl = localStorage.getItem("backUrl") || "../img/6.jpg"
+// Default theme icon
+const defaultThemeIcon_DOM = document.querySelector(".default-theme");
+
+
+let backUrl = localStorage.getItem("backUrl") || "../img/1.jpg"
 let iconsToDisplay = JSON.parse(localStorage.getItem("iconsToDisplay")) || [];
 
 function randomIndexGenerator(def = 10){
@@ -145,6 +149,14 @@ function createIcons(iconsArr = iconsToDisplay){
             </li>
         `
     }).join("");
+    mostFrequentlyList_DOM.innerHTML += `
+        <li>
+            <a class="mfv-links" target="_blank" href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+        </li>
+        <li>
+            <a class="mfv-links" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        </li>
+    `
 }
 
 addLinkForm_DOM.addEventListener("submit",function(e){
@@ -155,7 +167,7 @@ addLinkForm_DOM.addEventListener("submit",function(e){
 
     addLinkInput_DOM.value = ""
     if(regex.test(linkVal)){
-        console.log("entered")
+
         let firstChar;
         let icon = ""
         if(!linkVal.includes("www.")){
@@ -167,7 +179,6 @@ addLinkForm_DOM.addEventListener("submit",function(e){
             let {key,val} = socialIcon;
             return linkVal.includes(key)
         })
-        console.log(socialIcon)
         if(socialIcon.length){
             let {key,val} = socialIcon[0]
             icon = val;
@@ -204,7 +215,17 @@ function handleClickOnImageChangerIcon(e){
     let element = e.target.closest(".image-changer-icon");
     if(!element) return;
     backgroundForm_DOM.classList.toggle("bg-img-form-display");
-   
+    
+}
+
+function handleClickOnDisplayDefaultTheme(e){
+    let element = e.target.closest(".default-theme");
+    if(!element) return
+    localStorage.setItem("backUrl","../img/1.jpg");
+    document.body.style.background = `url("../img/1.jpg")`;
+    document.body.style.backgroundSize = `cover`;
+    document.body.style.backgroundRepeat = "no-repeat";
+    defaultThemeIcon_DOM.style.display = "none";
 }
 
 
@@ -212,7 +233,8 @@ function handleClickOnImageChangerIcon(e){
 document.body.addEventListener("click",function(e){
     handleClickOnAddLinkButton(e);
     handleClickOnDeleteLinkButton(e);
-    handleClickOnImageChangerIcon(e)
+    handleClickOnImageChangerIcon(e);
+    handleClickOnDisplayDefaultTheme(e);
 })
 
 // backgroundImage changer;
@@ -220,12 +242,14 @@ backgroundForm_DOM.addEventListener("submit",function(e){
     e.preventDefault();
     const linkVal = backgroundInput_DOM.value;
     const regexImgChecker = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
-    console.log(regexImgChecker.test(linkVal))
-    if(regexImgChecker.test(linkVal)){
+    if(regexImgChecker.test(linkVal) || linkVal.includes("images.unsplash.com/photo")){
         document.body.style.background = `url("${linkVal}")`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundRepeat = "no-repeat";
         localStorage.setItem("backUrl",linkVal);
         backgroundInput_DOM.value = "";
         backgroundForm_DOM.classList.remove("bg-img-form-display");
+        defaultThemeIcon_DOM.style.display = "block";
     } else {
         backgroundInput_DOM.value = "";
         backgroundForm_DOM.classList.remove("bg-img-form-display");
@@ -233,7 +257,13 @@ backgroundForm_DOM.addEventListener("submit",function(e){
 })
 
 function setBackground(){
-    document.body.style.background = `url("${backUrl}")`
+    document.body.style.background = `url(${backUrl})`;
+    document.body.style.backgroundSize = `cover`;
+    document.body.style.backgroundRepeat = "no-repeat";
+}
+
+function showDefaultThemeIconIfBackChanged(){
+    if(backUrl !== "../img/1.jpg") defaultThemeIcon_DOM.style.display = "block";
 }
 
 
@@ -245,6 +275,7 @@ window.addEventListener("load",(event) => {
     setQuote();
     autoFocusAtSearchBar();
     createIcons();
+    showDefaultThemeIconIfBackChanged();
 
 });
 

@@ -34,6 +34,8 @@ class Todo{
             if(e.keyCode === 13){
                 const primaryInputVal = e.target.value;
                 this.$todoPrimaryInput.value = "";
+                if(primaryInputVal.length > 32) return;
+               
                 this.todos.push({
                     id:this.randomIdGeneratorLi(),
                     todoDesc:primaryInputVal[0].toUpperCase() + primaryInputVal.slice(1),
@@ -66,7 +68,7 @@ class Todo{
                         <input class="todo-checkbox" type="checkbox" id="todo-checkbox-${todo.id}" ${todo.completed ? "checked" : ""}>
                         <label for="todo-checkbox-${todo.id}"></label>
                     </span>
-                    <span class="todo-description">
+                    <span class="todo-description ${todo.completed ? 'todo-strikethrough' : ''}">
                         ${todo.todoDesc}
                     </span>
                     <span class="todo-close">
@@ -153,7 +155,7 @@ class Todo{
             this.activeTab = "completed";
             this.createTodoInList(this.todos.filter(todo => todo.completed));
         } else {
-            this.activeTab === "clear-completed";
+            this.activeTab === "all";
             this.todos = this.todos.filter(todo => !todo.completed);
             localStorage.setItem("todos",JSON.stringify(this.todos));
             this.createTodoInList();
@@ -167,7 +169,7 @@ class Todo{
         let activeTasks = this.todos.filter(todo => !todo.completed);
         if(activeTasks.length){
             pendingTaskHtml += `
-                <p class="pending-header">You have ${activeTasks.length} task pending. Top 3 tasks :</p>
+                <p class="pending-header">You have ${activeTasks.length} task pending. Top ${activeTasks.length < 3 ? activeTasks.length : 3} tasks :</p>
                 
             `;
             activeTasks = activeTasks.slice(0,3)
