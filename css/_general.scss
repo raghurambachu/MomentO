@@ -1,5 +1,6 @@
 *,*::before,*::after{
     box-sizing: border-box;
+    
 }
 
 body{
@@ -12,6 +13,10 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     color: hsl(0, 0%, var(calc((var(80) - var(60)) * -100%)));
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.5) !important;
+    .todo-section{
+        text-shadow: none;
+    }
     // mix-blend-mode: hard-light;
 }
 

@@ -13,6 +13,7 @@ const backgroundInput_DOM =  document.querySelector(".bg-img-input");
 
 // Default theme icon
 const defaultThemeIcon_DOM = document.querySelector(".default-theme");
+const todoSection_DOM = document.querySelectorAll(".todo-section");
 
 
 let backUrl = localStorage.getItem("backUrl") || "../img/1.jpg"
@@ -268,6 +269,7 @@ function showDefaultThemeIconIfBackChanged(){
 
 
 window.addEventListener("load",(event) => {
+    
     // setBackground(event);
     setBackground();
     setTime();
