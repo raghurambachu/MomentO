@@ -1,7 +1,7 @@
 {
-  "name": "Productivity Catalyst",
-  "description" : "A Todo app with background image changer. It catalyses your productivity.",
-  "version": "1.0.1",
+  "name": "Focus - Productivity Manager",
+  "description" : "A Todo app with background image changer. It enhances your productivity.",
+  "version": "1.0.21",
   "manifest_version": 2,
   "icons": {
     "16": "icon16.png",
