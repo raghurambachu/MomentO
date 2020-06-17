@@ -1,6 +1,6 @@
 {
-  "name": "Momento",
-  "description" : "A Todo app with background image changer. It tracks your moments.",
+  "name": "Productivity Catalyst",
+  "description" : "A Todo app with background image changer. It catalyses your productivity.",
   "version": "1.0.1",
   "manifest_version": 2,
   "icons": {
