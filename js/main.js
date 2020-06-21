@@ -188,7 +188,7 @@ addLinkForm_DOM.addEventListener("submit",function(e){
             let index = firstChar.charCodeAt() - 97;
             icon = icons[index];
         }
-        if(iconsToDisplay.length <= 8){
+        if(iconsToDisplay.length <= 6){
             iconsToDisplay.push({
                 link:linkVal,
                 icon

@@ -8,6 +8,7 @@ body{
     color: $primary;
     line-height: 1.5;
     overflow: hidden;
+    height: 100vh;
     // background-image: linear-gradient(to bottom, rgba(255,255,255,0.5),rgba(255,255,255,0.5)), url("../img/2.jpg");
     background-image: linear-gradient(to bottom,rgba(0,0,0, 0.9),rgba(0,0,0,0.9)),url(../img/6.jpg);
     background-repeat: no-repeat;
