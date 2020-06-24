@@ -59,6 +59,34 @@
     <!-- Search Bar -->
     <div class="search-bar">
       <form action="#" class="search-bar-form">
+        <div class="custom-select-wrapper">
+          <div class="custom-select">
+              <div class="custom-select__trigger"><span>Google</span>
+                  <div class="arrow"></div>
+              </div>
+              <div class="custom-options">
+                  <span class="custom-option selected" data-value="google">Google</span>
+                  <span class="custom-option" data-value="mdn">MDN</span>
+                  <span class="custom-option" data-value="csstricks">CSS Tricks</span>
+                  <span class="custom-option" data-value="stackoverflow">Stackoverflow</span>
+                  <span class="custom-option" data-value="duckduckgo">DuckDuckGo</span>
+                  <span class="custom-option" data-value="quora">Quora</span>
+                  <span class="custom-option" data-value="reddit">Reddit</span>
+                  <span class="custom-option" data-value="medium">Medium</span>                
+              </div>
+          </div>
+      </div>
+        <!-- <div class="search-dropdown-container">
+          <select name="search-dropdown" id="search-dropdown">
+            <option value="google" selected>Google</option>
+            <option value="mdn">MDN</option>
+            <option value="stackoverflow">Stackoverflow</option>
+            <option value="duckduckgo">DuckDuckGo</option>
+            <option value="quora">Quora</option>
+            <option value="reddit">Reddit</option>
+
+          </select>
+        </div> -->
         <input type="text" class="search-input" placeholder="search">
         <button type="submit" class="search-button">
           <img src="./img/icons/search.svg" alt="Search">
@@ -126,3 +154,27 @@
     <script src="./js/todo.js"></script>
   </body>
 </html>
+
+
+
+<!-- 
+  search query
+  https://stackoverflow.com/search?q=array%20methods
+  https://duckduckgo.com/?q=something
+  https://developer.mozilla.org/en-US/search?q=array+methods
+  https://www.quora.com/search?q=array%20methods
+  https://www.reddit.com/search?q=javascript
+  https://medium.com/search?q=javascript
+  https://github.com/search?q=javascript
+  https://css-tricks.com/?s=flex
+
+  <span class="custom-option selected" data-value="google">Google</span>
+  <span class="custom-option" data-value="mdn">MDN</span>
+  <span class="custom-option" data-value="csstricks">CSS Tricks</span>
+  <span class="custom-option" data-value="stackoverflow">Stackoverflow</span>
+  <span class="custom-option" data-value="duckduckgo">DuckDuckGo</span>
+  <span class="custom-option" data-value="quora">Quora</span>
+  <span class="custom-option" data-value="reddit">Reddit</span>
+  <span class="custom-option" data-value="medium">Medium</span>                
+
+ -->

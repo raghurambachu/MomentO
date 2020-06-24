@@ -16,8 +16,7 @@ const defaultThemeIcon_DOM = document.querySelector(".default-theme");
 const todoSection_DOM = document.querySelectorAll(".todo-section");
 
 
-let backUrl = localStorage.getItem("backUrl") || "../img/1.jpg"
-let iconsToDisplay = JSON.parse(localStorage.getItem("iconsToDisplay")) || [];
+
 
 function randomIndexGenerator(def = 10){
     return Math.floor(Math.random() * def)
@@ -117,15 +116,27 @@ function autoFocusAtSearchBar(){
     searchBarInput_DOM.focus()
 }
 
-function searchStringAndOpenGoogle(query){
-    url = `http://www.google.com/search?q=${query}`;
+function searchStringAndOpen(websiteToSearchAt,query){
+    let urls = {
+        "google":"http://www.google.com/search?q=",
+        "mdn":"https://developer.mozilla.org/en-US/search?q=",
+        "csstricks":"https://css-tricks.com/?s=",
+        "stackoverflow":"https://stackoverflow.com/search?q=",
+        "duckduckgo":"https://duckduckgo.com/?q=",
+        "quora":"https://www.quora.com/search?q=",
+        "reddit":"https://www.reddit.com/search?q=",
+        "medium":"https://medium.com/search?q="
+    }
+
+    url = urls[websiteToSearchAt] + query;
     window.open(url,"_self");
 }
 
 function handleClickOnSearchButton(e){
     e.preventDefault()
     const query = searchBarInput_DOM.value;
-    searchStringAndOpenGoogle(query);
+    const websiteToSearchAt = document.querySelector(".custom-select .selected").dataset.value;
+    searchStringAndOpen(websiteToSearchAt,query);
 
 }
 
@@ -235,6 +246,12 @@ function handleClickOnDisplayDefaultTheme(e){
     defaultThemeIcon_DOM.style.display = "none";
 }
 
+function handleClickOnDropdown(e){
+    if(!e.target.closest(".custom-option"))return;
+    let selectedOption = e.target.closest(".custom-option");
+    localStorage.setItem("selectedUrl",selectedOption.dataset.value);
+}
+
 
 
 document.body.addEventListener("click",function(e){
@@ -242,6 +259,7 @@ document.body.addEventListener("click",function(e){
     handleClickOnDeleteLinkButton(e);
     handleClickOnImageChangerIcon(e);
     handleClickOnDisplayDefaultTheme(e);
+    handleClickOnDropdown(e);
 })
 
 // backgroundImage changer;
@@ -275,6 +293,15 @@ function showDefaultThemeIconIfBackChanged(){
     if(backUrl !== "../img/1.jpg") defaultThemeIcon_DOM.style.display = "block";
 }
 
+function selectDefaultUrl(){
+    let allOptions = [...document.querySelectorAll(".custom-option")];
+    allOptions.forEach(customOption => customOption.classList.contains("selected") ? customOption.classList.remove("selected") : "");
+    allOptions.forEach(option => option.dataset.value === selectedUrl ? option.classList.add("selected") : "");
+    let getTextToDisplay = document.querySelector(".selected").textContent;
+ 
+    document.querySelector(".custom-select__trigger span").innerText = getTextToDisplay;
+}
+
 
 window.addEventListener("load",(event) => {
     
@@ -286,6 +313,7 @@ window.addEventListener("load",(event) => {
     autoFocusAtSearchBar();
     createIcons();
     showDefaultThemeIconIfBackChanged();
+    selectDefaultUrl();
 
 });
 
