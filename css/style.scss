@@ -442,6 +442,9 @@ input[type="checkbox"]:checked + label:before {
     left: 5%;
     bottom: 5%;
     display: none;
+    .right{
+        left: 400%;
+    }
 }
 
 
