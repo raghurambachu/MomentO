@@ -41,7 +41,7 @@ a{
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    // border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
   }
   
   /* Tooltip text */
@@ -72,7 +72,7 @@ a{
   }
 
 .tooltip .left{
-    top: 50%;
+    top: -28%;
     transform: translateY(-50%);
     right: 120%;
 }
@@ -111,4 +111,12 @@ a{
 //   Background tooltip
 .bg-theme-tooltip .tooltiptext{
     width: 160px;
+}
+
+// time-date container tooltip
+.greeting-wrapper .tooltiptext{
+  width: 400px;
+  bottom: -50%;
+  left: 50%;
+  transform: translateX(-35%);
 }

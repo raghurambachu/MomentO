@@ -146,16 +146,22 @@ function createIcons(iconsArr = iconsToDisplay){
         return `
             <li class="li-link-item">
                 <a class="mfv-links user-link" href="${iconObj.link}">${iconObj.icon}</a>
-                <span class="icon-delete"><i class="fas fa-minus-circle"></i></span>
+                <span class="icon-delete">
+                    <img src="../img/icons/minus-circle.svg" alt="Remove Bookmark">
+                </span>
             </li>
         `
     }).join("");
     mostFrequentlyList_DOM.innerHTML += `
         <li>
-            <a class="mfv-links" target="_blank" href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+            <a class="mfv-links" href="https://twitter.com">
+                <img src="../img/icons/twitter.svg" alt="Twitter">
+            </a>
         </li>
         <li>
-            <a class="mfv-links" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+            <a class="mfv-links" href="https://www.instagram.com/">
+                <img src="../img/icons/instagram.svg" alt="Instagram">
+            </a>
         </li>
     `
 }
@@ -243,7 +249,9 @@ backgroundForm_DOM.addEventListener("submit",function(e){
     e.preventDefault();
     const linkVal = backgroundInput_DOM.value;
     const regexImgChecker = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
-    if(regexImgChecker.test(linkVal) || linkVal.includes("images.unsplash.com/photo")){
+    if(regexImgChecker.test(linkVal) || linkVal.includes("images.unsplash.com/photo") ){
+        //|| linkVal.includes("data:image") || linkVal.includes("https://encrypted-tbn0.gstatic.com/images") support for other images
+        // document.body.style.background = backUrl; fallback background
         document.body.style.background = `url("${linkVal}")`;
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundRepeat = "no-repeat";

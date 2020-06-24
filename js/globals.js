@@ -5,4 +5,4 @@ const username_DOM = document.querySelector(".username");
 const greetingWrapper_DOM = document.querySelector(".greeting-wrapper");
 
 // Globals
-const user = localStorage.getItem("user") || "User"
+const user = localStorage.getItem("user") || "Username"

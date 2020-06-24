@@ -79,8 +79,6 @@ a {
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black;
-  /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
@@ -109,7 +107,7 @@ a {
 }
 
 .tooltip .left {
-  top: 50%;
+  top: -28%;
   transform: translateY(-50%);
   right: 120%;
 }
@@ -144,6 +142,13 @@ a {
 
 .bg-theme-tooltip .tooltiptext {
   width: 160px;
+}
+
+.greeting-wrapper .tooltiptext {
+  width: 400px;
+  bottom: -50%;
+  left: 50%;
+  transform: translateX(-35%);
 }
 
 .todo-toggler {
@@ -394,7 +399,7 @@ input[type=checkbox]:checked + label:before {
   right: 0;
   top: 0;
   padding: 0.75rem 1.5rem;
-  color: blue;
+  color: #0000ff;
   font-size: 1.1rem;
   background: transparent;
   border: 0;
@@ -402,7 +407,7 @@ input[type=checkbox]:checked + label:before {
   cursor: pointer;
 }
 .search-bar .search-button:hover {
-  color: cornflowerblue;
+  color: #6495ed;
 }
 
 .time-name-container {
