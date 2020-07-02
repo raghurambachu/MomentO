@@ -178,6 +178,21 @@ input[type="checkbox"]:checked + label:before {
   transform: rotate(45deg);
 }
 
+
+// Weather Styling
+.weather-container{
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.5) !important;
+    
+    .weather-content{
+        justify-content: center;
+        align-items: center;
+    }
+    .temperature{
+        font-size: 1.25rem;
+    }
+    
+}
+
 .background-image-changer{
     position: absolute;
     right: 5%;
@@ -404,7 +419,7 @@ input[type="checkbox"]:checked + label:before {
     position: relative;
     left: 50%;
     top: 32%;
-    transform: translate(-50%,150%);
+    transform: translate(-50%,90%);
     display: inline-block;
     z-index: 1;
     .container{
@@ -587,7 +602,7 @@ input[type="checkbox"]:checked + label:before {
 .quotes-section{
     position: absolute;
     max-width: 100%;
-    bottom: 0;
+    bottom: 2%;
     font-size: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
@@ -597,5 +612,27 @@ input[type="checkbox"]:checked + label:before {
         text-align: center;
 
     }
+}
+
+.weather-toggler{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    cursor: pointer; 
+}
+
+//In case of error or end of fetch requests, no need to show weather toggler
+.hide-weather-toggler{
+    display: none;
+}
+
+.show-weather-toggler{
+    display: block;
+}
+
+
+
+.weather-hide{
+    opacity: 0;
 }
 

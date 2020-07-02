@@ -15,6 +15,9 @@ const backgroundInput_DOM =  document.querySelector(".bg-img-input");
 const defaultThemeIcon_DOM = document.querySelector(".default-theme");
 const todoSection_DOM = document.querySelectorAll(".todo-section");
 
+// Weather Container
+const weather_DOM = document.querySelector(".weather-container");
+const weatherToggler_DOM = document.querySelector(".weather-toggler");
 
 
 
@@ -255,6 +258,12 @@ function handleClickOnDropdown(e){
     localStorage.setItem("selectedUrl",selectedOption.dataset.value);
 }
 
+function handleClickOnWeatherToggler(e){
+    if(!e.target.closest(".weather-toggler")) return;
+    let weatherToggler = e.target.closest(".weather-toggler");
+    weather_DOM.classList.toggle("weather-hide");
+}
+
 
 
 document.body.addEventListener("click",function(e){
@@ -263,6 +272,7 @@ document.body.addEventListener("click",function(e){
     handleClickOnImageChangerIcon(e);
     handleClickOnDisplayDefaultTheme(e);
     handleClickOnDropdown(e);
+    handleClickOnWeatherToggler(e);
 })
 
 // backgroundImage changer;
@@ -305,6 +315,54 @@ function selectDefaultUrl(){
     document.querySelector(".custom-select__trigger span").innerText = getTextToDisplay;
 }
 
+function setLocationAndWeather(){
+    function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else { 
+          weather_DOM.innerHTML = "";
+        }
+      }
+
+    function showPosition(position) {   
+        const lat = position.coords.latitude ;
+        const lon = position.coords.longitude;
+        const weatherData = 
+        fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&APPID=233403ff99956b6da6b27cc48c6617ef`)
+        .then( data => data.json())
+        .then( res => {
+            
+            if(res.cod = "200"){
+                if(weatherToggler_DOM.classList.contains("hide-weather-toggler")) weatherToggler_DOM.classList.add("show-weather-toggler");
+                const temperature = +res.list[0].main.temp - 273.15;
+                const weatherIcon = res.list[0].weather[0].icon;
+                weather_DOM.innerHTML = `
+                    <div class="flex weather-content">
+                        <span class="weather-icon">
+                            <img src="../img/weather-icons/${weatherIcon}.png">
+                        </span>
+                        <div class="temperature">
+                            ${temperature.toFixed(1)} &#8451;
+                        </div>
+                    </div>
+                `
+              
+              
+               
+            } else if(res.cod === "429"){
+                weather_DOM.innerHTML = "";
+                weatherToggler_DOM.classList.add("hide-weather-toggler");
+            }
+        });
+    }
+
+    function showError(error){
+        weather_DOM.innerHTML = "";
+    }
+
+    getLocation()
+}
+
 
 window.addEventListener("load",(event) => {
     
@@ -317,7 +375,7 @@ window.addEventListener("load",(event) => {
     createIcons();
     showDefaultThemeIconIfBackChanged();
     selectDefaultUrl();
-
+    setLocationAndWeather()
 });
 
 setInterval(() => {
