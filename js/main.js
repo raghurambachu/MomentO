@@ -223,8 +223,11 @@ addLinkForm_DOM.addEventListener("submit",function(e){
 function handleClickOnDeleteLinkButton(e){
     let element = e.target.closest(".icon-delete");
     if(!element) return;
+  
     let getLink = element.previousElementSibling.href;
+  
     iconsToDisplay = iconsToDisplay.filter(iconObj => iconObj.link !== getLink);
+    
     localStorage.setItem("iconsToDisplay",JSON.stringify(iconsToDisplay));
     createIcons();
 }

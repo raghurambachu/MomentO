@@ -72,7 +72,7 @@ class Todo{
                         ${todo.todoDesc}
                     </span>
                     <span class="todo-close">
-                        <i class="fas fa-times"></i>
+                        <img src="../img/icons/times.svg">
                     </span>
                 </li>
             `;
