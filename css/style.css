@@ -501,7 +501,8 @@ input[type=checkbox]:checked + label:before {
   width: 10px;
 }
 
-.arrow::before, .arrow::after {
+.arrow::before,
+.arrow::after {
   content: "";
   position: absolute;
   bottom: 0px;
@@ -537,7 +538,7 @@ input[type=checkbox]:checked + label:before {
   position: relative;
   left: 50%;
   top: 32%;
-  transform: translate(-50%, 90%);
+  transform: translate(-50%, -25%);
   display: inline-block;
   z-index: 1;
 }
@@ -571,7 +572,8 @@ input[type=checkbox]:checked + label:before {
   top: 50%;
   transform: translateY(-50%);
 }
-.most-frequently-visited a, .most-frequently-visited .add-link {
+.most-frequently-visited a,
+.most-frequently-visited .add-link {
   display: inline-block;
   height: 50px;
   width: 50px;

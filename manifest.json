@@ -1,10 +1,10 @@
 {
   "name": "Focus - Productivity Manager",
-  "description" : "A Todo app with background image changer. It enhances your productivity.",
-  "version": "1.0.254",
+  "description": "A Todo app with background image changer. It enhances your productivity.",
+  "version": "1.0.255",
   "manifest_version": 2,
-  "chrome_url_overrides":{
-    "newtab" : "index.html"
+  "chrome_url_overrides": {
+    "newtab": "index.html"
   },
   "icons": {
     "16": "img/16.png",
